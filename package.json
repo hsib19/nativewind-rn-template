@@ -1,5 +1,5 @@
 {
-  "name": "NativeWindStarter",
+  "name": "nativewind-rn-template",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,8 +10,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "nativewind": "^4.1.23",
     "react": "19.0.0",
-    "react-native": "0.79.3"
+    "react-native": "0.79.3",
+    "react-native-reanimated": "^3.18.0",
+    "react-native-safe-area-context": "^5.4.1",
+    "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
