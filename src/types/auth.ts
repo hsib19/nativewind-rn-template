@@ -15,7 +15,7 @@ export interface User {
 
 export interface LoginResponse {
     token: string;
-    expires_in: number;
+    expires_in?: number;
     refresh_token?: string;
     user: User;
 }

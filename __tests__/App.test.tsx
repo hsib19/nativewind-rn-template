@@ -1,13 +1,19 @@
-/**
- * @format
- */
-
 import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 import App from '../App';
 
-test('renders correctly', async () => {
-  await ReactTestRenderer.act(() => {
-    ReactTestRenderer.create(<App />);
-  });
+jest.mock('@/theme/ThemeProvider', () => ({
+    ThemeProvider: ({ children }: any) => children,
+}));
+
+jest.mock('@/navigation/RootNavigator', () => {
+    const { Text } = require('react-native');
+    return () => <Text>RootNavigator</Text>;
+});
+
+describe('App', () => {
+    it('renders without crashing', () => {
+        const { getByText } = render(<App />);
+        expect(getByText('RootNavigator')).toBeTruthy();
+    });
 });
