@@ -1,16 +1,18 @@
 import "./global.css";
 
-import { View, Text } from 'react-native';
-import { ThemeProvider } from "./src/theme/ThemeProvider";
+import { Provider } from 'react-redux';
+import { ThemeProvider } from "@/theme/ThemeProvider";
+import { store } from "@/store";
+import RootNavigator from '@/navigation/RootNavigator';
  
 export default function App() {
 
     return(
-      <ThemeProvider>
-        <View className="flex-1 justify-center items-center">
-          <Text className="text-black dark:text-white text-5xl">Homepage</Text>
-        </View>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <RootNavigator />
+        </ThemeProvider>
+      </Provider>
     );
     
 }
