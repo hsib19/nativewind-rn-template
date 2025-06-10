@@ -16,9 +16,11 @@ module.exports = {
           '@types': './src/types',
           '@services': './src/services',
           '@utils': './src/utils',
+          '@lib': './src/lib',
         },
       },
     ],
     'react-native-reanimated/plugin',
+    '@babel/plugin-transform-class-static-block',
   ],
 };

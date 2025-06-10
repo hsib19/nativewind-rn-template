@@ -3,9 +3,11 @@ import {
     Text,
     TouchableOpacity,
     ActivityIndicator,
+    View,
+    StyleSheet,
 } from 'react-native';
-import { cn } from '@lib/utils';
-import * as Icons from 'react-native-vector-icons';
+import { cn } from '@/lib/utils';
+import { IconPacks } from '@/lib/iconMap';
 import { ButtonProps } from '@/types/button';
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,10 +20,16 @@ const Button: React.FC<ButtonProps> = ({
     iconName,
     iconSize = 18,
     iconColor,
+    iconPosition = 'left',
+    shadow = false,
+    shadowColor = '#000',
+    shadowRadius = 4,
+    rounded,
     className,
     ...props
 }) => {
-    const baseStyles = 'px-4 py-3 rounded-lg flex-row items-center justify-center';
+    const baseStyles =
+        'px-4 py-3 rounded-lg flex-row items-center justify-center';
     const widthStyle = fullWidth ? 'w-full' : '';
 
     const variants: Record<string, string> = {
@@ -40,7 +48,42 @@ const Button: React.FC<ButtonProps> = ({
         ? 'bg-gray-200 border-gray-200'
         : '';
 
-    const IconComponent = iconType && iconName ? (Icons[iconType] as any) : null;
+    const roundedStyle = typeof rounded === 'string'
+        ? `rounded-${rounded}`
+        : rounded === true
+            ? 'rounded-full'
+            : 'rounded-lg';
+
+    const IconComponent = iconType && iconName && IconPacks[iconType as keyof typeof IconPacks];
+
+    const renderIcon = () =>
+        IconComponent && (
+            <IconComponent
+                className={iconPosition === 'left' ? 'mr-2' : 'ml-2'}
+                name={iconName}
+                size={iconSize}
+                color={
+                    iconColor ??
+                    (disabled
+                        ? '#aaa'
+                        : variant === 'primary'
+                            ? '#fff'
+                            : variant === 'secondary'
+                                ? '#333'
+                                : '#007bff')
+                }
+            />
+        );
+
+    const shadowStyle = shadow
+        ? {
+            elevation: 5, // Android
+            shadowColor, // iOS
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.3,
+            shadowRadius,
+        }
+        : {};
 
     return (
         <TouchableOpacity
@@ -49,32 +92,21 @@ const Button: React.FC<ButtonProps> = ({
                 variants[variant],
                 disabledStyles,
                 widthStyle,
+                roundedStyle,
+                shadow && 'shadow', // NativeWind fallback
                 className
             )}
+            style={shadowStyle}
             disabled={disabled || loading}
             {...props}
         >
             {loading ? (
-                <ActivityIndicator color={variant === 'primary' ? '#fff' : '#007bff'} />
+                <ActivityIndicator
+                    color={variant === 'primary' ? '#fff' : '#007bff'}
+                />
             ) : (
-                <>
-                    {IconComponent && (
-                        <IconComponent
-                            className="mr-6"
-                            name={iconName}
-                            size={iconSize}
-                            color={
-                                iconColor ??
-                                (disabled
-                                    ? '#aaa'
-                                    : variant === 'primary'
-                                        ? '#fff'
-                                        : variant === 'secondary'
-                                            ? '#333'
-                                            : '#007bff')
-                            }
-                        />
-                    )}
+                <View className="flex-row items-center">
+                    {iconPosition === 'left' && renderIcon()}
                     <Text
                         className={cn(
                             'font-semibold',
@@ -84,7 +116,8 @@ const Button: React.FC<ButtonProps> = ({
                     >
                         {title}
                     </Text>
-                </>
+                    {iconPosition === 'right' && renderIcon()}
+                </View>
             )}
         </TouchableOpacity>
     );

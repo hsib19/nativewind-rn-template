@@ -2,6 +2,7 @@
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "skipLibCheck": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -35,7 +36,21 @@
       ],
       "@lib/*": [
         "src/lib/*"
+      ],
+      "@storybook/*": [
+        ".rnstorybook/*"
       ]
     }
-  }
+  },
+  "include": [
+    "nativewind-env.d.ts",
+    "src",
+    ".rnstorybook"
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { login } from '@/store/authSlice';
+import Button from '@/components/Button';
 
 export default function LoginScreen() {
     const dispatch = useAppDispatch();
@@ -14,7 +15,7 @@ export default function LoginScreen() {
     };
 
     return (
-        <View>
+        <View className="p-5">
             <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
             <TextInput
                 placeholder="Password"
@@ -22,7 +23,7 @@ export default function LoginScreen() {
                 onChangeText={setPassword}
                 secureTextEntry
             />
-            <Button title={loading ? 'Loading...' : 'Login'} onPress={handleLogin} />
+            <Button iconName='home' rounded="md" shadowRadius={6} shadow={true} iconPosition='right' iconType='Feather' title={loading ? 'Loading...' : 'Login'} onPress={handleLogin} />
             {error && <Text className="text-red-500">{error}</Text>}
         </View>
     );
