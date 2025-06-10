@@ -25,7 +25,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            {isAuthenticated === false ? <AppNavigator /> : <AuthNavigator />}
+            {isAuthenticated ? <AppNavigator /> : <AuthNavigator />}
         </NavigationContainer>
     );
 }
