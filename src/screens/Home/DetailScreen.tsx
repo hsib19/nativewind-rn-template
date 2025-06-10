@@ -1,18 +1,36 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import type { HomeStackParamList } from '@/types/navigation';
+import Select from '@/components/Select';
+import React, { useState } from 'react';
+import { Text, SafeAreaView } from 'react-native';
 
-type DetailScreenNavigationProp = NativeStackNavigationProp<HomeStackParamList, 'Detail'>;
+const options = [
+    { label: 'Indonesia', value: 'id' },
+    { label: 'Malaysia', value: 'my' },
+    { label: 'Singapore', value: 'sg' },
+    { label: 'Thailand', value: 'th' },
+];
 
 export default function DetailScreen() {
-    const navigation = useNavigation<DetailScreenNavigationProp>();
+    const [selected, setSelected] = useState<string | null>(null);
 
     return (
-        <View className="flex-1 justify-center items-center">
-            <Text>Detail Screen</Text>
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
-        </View>
+        <SafeAreaView style={{ flex: 1, padding: 16 }}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 16 }}>
+                Country Selector
+            </Text>
+
+            <Select
+                label="Select Country"
+                placeholder="Choose your country"
+                value={selected}
+                onChange={setSelected}
+                options={options}
+            />
+
+            {selected && (
+                <Text style={{ marginTop: 16 }}>
+                    Selected country code: <Text style={{ fontWeight: 'bold' }}>{selected}</Text>
+                </Text>
+            )}
+        </SafeAreaView>
     );
 }
