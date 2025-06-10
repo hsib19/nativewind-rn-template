@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Pressable, View, Text } from 'react-native';
+import { Pressable, View, Text, StyleSheet } from 'react-native';
 import Animated, {
     useSharedValue,
     useAnimatedStyle,
@@ -30,41 +30,42 @@ const Switch: React.FC<SwitchProps> = ({
 
     useEffect(() => {
         knobOffset.value = withTiming(checked ? offset : 0, { duration: 200 });
-    }, [checked]);
+    }, [checked, knobOffset, offset]);
 
     const knobStyle = useAnimatedStyle(() => ({
         marginLeft: knobOffset.value,
     }));
+
+    const containerStyle = [
+        styles.switchContainer,
+        {
+            width,
+            height,
+            borderRadius: height / 2,
+            padding,
+            backgroundColor: disabled
+                ? '#e5e7eb' // gray-200
+                : checked
+                    ? color
+                    : '#d1d5db', // gray-300
+        },
+    ];
+
+    const knobBaseStyle = {
+        width: knob,
+        height: knob,
+        borderRadius: knob / 2,
+        backgroundColor: '#fff',
+    };
 
     return (
         <View className="flex-row items-center">
             <Pressable
                 onPress={() => !disabled && onChange?.(!checked)}
                 disabled={disabled}
-                style={{
-                    width,
-                    height,
-                    borderRadius: height / 2,
-                    backgroundColor: disabled
-                        ? '#e5e7eb'
-                        : checked
-                            ? color
-                            : '#d1d5db',
-                    padding,
-                    justifyContent: 'center',
-                }}
+                style={containerStyle}
             >
-                <Animated.View
-                    style={[
-                        {
-                            width: knob,
-                            height: knob,
-                            borderRadius: knob / 2,
-                            backgroundColor: '#fff',
-                        },
-                        knobStyle,
-                    ]}
-                />
+                <Animated.View style={[knobBaseStyle, knobStyle]} />
             </Pressable>
             {label && (
                 <Text
@@ -80,5 +81,11 @@ const Switch: React.FC<SwitchProps> = ({
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    switchContainer: {
+        justifyContent: 'center',
+    },
+});
 
 export default Switch;

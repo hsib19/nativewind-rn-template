@@ -1,5 +1,5 @@
 import { TouchableOpacityProps } from 'react-native';
-import { IconPacks, IconPackName } from '@/lib/iconMap';
+import { IconPackName } from '@/lib/iconMap';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline';
 

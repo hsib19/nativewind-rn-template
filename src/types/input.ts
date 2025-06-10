@@ -1,5 +1,5 @@
-import { IconPacks } from "@/lib/iconMap";
-import { TextInputProps } from "react-native";
+import { IconPacks } from '@/lib/iconMap';
+import { TextInputProps } from 'react-native';
 
 export interface InputProps extends TextInputProps {
     label?: string;
@@ -7,7 +7,7 @@ export interface InputProps extends TextInputProps {
     error?: string;
     iconType?: keyof typeof IconPacks;
     iconName?: string;
-    iconPosition?: 'left' | 'right'; 
+    iconPosition?: 'left' | 'right';
     iconColor?: string;
     iconSize?: number;
     variant?: 'default' | 'outline' | 'underline';

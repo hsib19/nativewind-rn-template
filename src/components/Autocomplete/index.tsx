@@ -47,17 +47,30 @@ export default function Autocomplete({
     };
 
     return (
-        <View style={styles.container}>
-            {label && <Text style={styles.label}>{label}</Text>}
-            <View style={styles.inputWrapper}>
-                {icon && <Icon name="search" size={18} color="#6B7280" style={styles.icon} />}
+        <View className="w-full">
+            {label && <Text className="mb-2 text-base font-medium text-gray-700">{label}</Text>}
+
+            <View className="relative justify-center">
+                {icon && (
+                    <Icon
+                        name="search"
+                        size={18}
+                        color="#6B7280"
+                        style={styles.positionIconSearch}
+                    />
+                )}
                 <TextInput
                     value={query}
                     onChangeText={setQuery}
                     placeholder={placeholder}
-                    style={[styles.input, icon && { paddingLeft: 36 }]}
+                    className={`py-3 px-4 text-base text-gray-900 bg-white border border-gray-300 rounded-lg ${icon ? 'pl-10' : ''}`}
                 />
-                {loading && <ActivityIndicator size="small" style={styles.loading} />}
+                {loading && (
+                    <ActivityIndicator
+                        size="small"
+                        className="absolute right-3"
+                    />
+                )}
             </View>
 
             {!loading && query.length > 0 && filtered.length > 0 && (
@@ -65,11 +78,14 @@ export default function Autocomplete({
                     data={filtered}
                     keyExtractor={(item) => item.value}
                     renderItem={({ item }) => (
-                        <Pressable onPress={() => handleSelect(item)} style={styles.item}>
-                            <Text>{item.label}</Text>
+                        <Pressable
+                            onPress={() => handleSelect(item)}
+                            className="px-4 py-2"
+                        >
+                            <Text className="text-gray-800">{item.label}</Text>
                         </Pressable>
                     )}
-                    style={styles.dropdown}
+                    className="mt-1 max-h-40 bg-white border border-gray-300 rounded-lg"
                     keyboardShouldPersistTaps="handled"
                 />
             )}
@@ -78,48 +94,5 @@ export default function Autocomplete({
 }
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-    },
-    label: {
-        marginBottom: 8,
-        fontSize: 16,
-        fontWeight: '500',
-        color: '#374151',
-    },
-    inputWrapper: {
-        position: 'relative',
-        justifyContent: 'center',
-    },
-    icon: {
-        position: 'absolute',
-        left: 12,
-        zIndex: 1,
-    },
-    input: {
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        borderWidth: 1,
-        borderColor: '#D1D5DB',
-        borderRadius: 8,
-        backgroundColor: '#FFFFFF',
-        fontSize: 16,
-        color: '#111827',
-    },
-    loading: {
-        position: 'absolute',
-        right: 12,
-    },
-    dropdown: {
-        marginTop: 4,
-        borderWidth: 1,
-        borderColor: '#D1D5DB',
-        borderRadius: 8,
-        backgroundColor: '#FFFFFF',
-        maxHeight: 150,
-    },
-    item: {
-        paddingVertical: 10,
-        paddingHorizontal: 16,
-    },
+    positionIconSearch: { position: 'absolute', left: 12, top: '50%', marginTop: -9 },
 });

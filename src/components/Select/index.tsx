@@ -59,15 +59,19 @@ const Select = ({
     );
 
     return (
-        <View>
-            {label && <Text style={styles.label}>{label}</Text>}
+        <View className="w-full">
+            {label && (
+                <Text className="text-base font-medium text-gray-800 mb-2">
+                    {label}
+                </Text>
+            )}
 
             <TouchableOpacity
-                style={styles.input}
                 onPress={openModal}
                 activeOpacity={0.8}
+                className="border border-gray-300 rounded-lg px-4 py-3 bg-white"
             >
-                <Text style={styles.inputText}>
+                <Text className="text-gray-900">
                     {value
                         ? options.find((opt) => opt.value === value)?.label
                         : placeholder}
@@ -93,16 +97,10 @@ const Select = ({
                             return (
                                 <TouchableOpacity
                                     onPress={() => handleSelect(item.value)}
-                                    style={[
-                                        styles.option,
-                                        isLast && { borderBottomWidth: 0 },
-                                    ]}
+                                    style={getOptionStyle(isLast)}
                                 >
                                     <Text
-                                        style={[
-                                            styles.optionText,
-                                            isSelected && { color: '#6366f1' }, // text-primary
-                                        ]}
+                                        style={getOptionTextStyle(isSelected)}
                                     >
                                         {item.label}
                                     </Text>
@@ -110,7 +108,7 @@ const Select = ({
                                         <Ionicons
                                             name="checkmark"
                                             size={20}
-                                            color="#6366f1" // text-primary
+                                            color="#6366f1"
                                         />
                                     )}
                                 </TouchableOpacity>
@@ -124,22 +122,6 @@ const Select = ({
 };
 
 const styles = StyleSheet.create({
-    label: {
-        fontSize: 16,
-        fontWeight: '500',
-        marginBottom: 8,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#d1d5db',
-        borderRadius: 8,
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        backgroundColor: 'white',
-    },
-    inputText: {
-        color: '#111827',
-    },
     modalBackground: {
         backgroundColor: 'white',
         shadowColor: '#000',
@@ -167,3 +149,13 @@ const styles = StyleSheet.create({
 });
 
 export default Select;
+
+const getOptionStyle = (isLast: boolean) => [
+    styles.option,
+    isLast && { borderBottomWidth: 0 },
+];
+
+const getOptionTextStyle = (isSelected: boolean) => [
+    styles.optionText,
+    isSelected && { color: '#6366f1' },
+];

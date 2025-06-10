@@ -31,7 +31,7 @@ export default function DateRangePicker({
     const showPicker = pickerType !== null;
 
     const onChange = (_event: any, selectedDate?: Date) => {
-        if (!selectedDate) return;
+        if (!selectedDate) {return;}
 
         const isStart = pickerType === 'start';
 
@@ -50,60 +50,40 @@ export default function DateRangePicker({
 
     dayjs.locale(locale);
 
+    const boxClass = `flex-1 flex-row items-center rounded-lg border border-gray-300 bg-white px-4 py-3 ${iconPosition === 'right' ? 'justify-between' : 'justify-start'
+        }`;
+
     return (
-        <View style={{ width: '100%' }}>
+        <View className="w-full">
             {label && (
-                <Text style={{ marginBottom: 8, fontSize: 16, fontWeight: '500', color: '#374151' }}>
-                    {label}
-                </Text>
+                <Text className="mb-2 text-base font-medium text-gray-700">{label}</Text>
             )}
-            <View style={{ flexDirection: 'row', gap: 12 }}>
-                <Pressable
-                    onPress={() => setPickerType('start')}
-                    style={{
-                        flex: 1,
-                        borderWidth: 1,
-                        borderColor: '#D1D5DB',
-                        borderRadius: 8,
-                        paddingVertical: 12,
-                        paddingHorizontal: 16,
-                        backgroundColor: '#FFFFFF',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: iconPosition === 'right' ? 'space-between' : 'flex-start',
-                    }}
-                >
+
+            <View className="flex-row space-x-3">
+                {/* Start Date Picker */}
+                <Pressable onPress={() => setPickerType('start')} className={boxClass}>
                     {iconPosition === 'left' && (
-                        <Icon name="calendar" size={20} color="#6B7280" style={{ marginRight: 8 }} />
+                        <Icon name="calendar" size={20} color="#6B7280" className="mr-2" />
                     )}
-                    <Text style={{ color: '#1F2937', flex: 1 }}>
+                    <Text className="text-gray-900 flex-1">
                         {dayjs(startDate).format(dateFormat)}
                     </Text>
-                    {iconPosition === 'right' && <Icon name="calendar" size={20} color="#6B7280" />}
+                    {iconPosition === 'right' && (
+                        <Icon name="calendar" size={20} color="#6B7280" />
+                    )}
                 </Pressable>
 
-                <Pressable
-                    onPress={() => setPickerType('end')}
-                    style={{
-                        flex: 1,
-                        borderWidth: 1,
-                        borderColor: '#D1D5DB',
-                        borderRadius: 8,
-                        paddingVertical: 12,
-                        paddingHorizontal: 16,
-                        backgroundColor: '#FFFFFF',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: iconPosition === 'right' ? 'space-between' : 'flex-start',
-                    }}
-                >
+                {/* End Date Picker */}
+                <Pressable onPress={() => setPickerType('end')} className={boxClass}>
                     {iconPosition === 'left' && (
-                        <Icon name="calendar" size={20} color="#6B7280" style={{ marginRight: 8 }} />
+                        <Icon name="calendar" size={20} color="#6B7280" className="mr-2" />
                     )}
-                    <Text style={{ color: '#1F2937', flex: 1 }}>
+                    <Text className="text-gray-900 flex-1">
                         {dayjs(endDate).format(dateFormat)}
                     </Text>
-                    {iconPosition === 'right' && <Icon name="calendar" size={20} color="#6B7280" />}
+                    {iconPosition === 'right' && (
+                        <Icon name="calendar" size={20} color="#6B7280" />
+                    )}
                 </Pressable>
             </View>
 

@@ -4,7 +4,6 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     View,
-    StyleSheet,
 } from 'react-native';
 import { cn } from '@/lib/utils';
 import { IconPacks } from '@/lib/iconMap';

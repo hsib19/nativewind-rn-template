@@ -36,32 +36,26 @@ export default function DatePicker({
     dayjs.locale(locale);
 
     return (
-        <View style={{ width: '100%' }}>
+        <View className="w-full">
             {label && (
-                <Text style={{ marginBottom: 8, fontSize: 16, fontWeight: '500', color: '#374151' }}>
+                <Text className="mb-2 text-base font-medium text-gray-700">
                     {label}
                 </Text>
             )}
+
             <Pressable
                 onPress={() => setShowPicker(true)}
-                style={{
-                    borderWidth: 1,
-                    borderColor: '#D1D5DB',
-                    borderRadius: 8,
-                    paddingVertical: 12,
-                    paddingHorizontal: 16,
-                    backgroundColor: '#FFFFFF',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: iconPosition === 'right' ? 'space-between' : 'flex-start',
-                }}
+                className={`flex-row items-center rounded-lg border border-gray-300 bg-white px-4 py-3 ${iconPosition === 'right' ? 'justify-between' : 'justify-start'
+                    }`}
             >
                 {iconPosition === 'left' && (
-                    <Icon name="calendar" size={20} color="#6B7280" style={{ marginRight: 8 }} />
+                    <Icon name="calendar" size={20} color="#6B7280" className="mr-2" />
                 )}
-                <Text style={{ color: '#1F2937', flex: 1 }}>
+
+                <Text className="text-gray-900 flex-1">
                     {dayjs(date).format(dateFormat)}
                 </Text>
+
                 {iconPosition === 'right' && (
                     <Icon name="calendar" size={20} color="#6B7280" />
                 )}

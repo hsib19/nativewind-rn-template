@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { cn } from '@/lib/utils';
 import { RadioButtonProps } from '@/types/radio';
 
@@ -19,18 +19,18 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     color = '#2563eb',
     error,
 }) => {
-    const { outer, inner } = sizeMap[size] || sizeMap['md'];
+    const { outer, inner } = sizeMap[size] || sizeMap.md;
 
     const borderColor = error
         ? '#ef4444'
         : disabled
-            ? '#d1d5db' // gray-300
+            ? '#d1d5db'
             : selected
                 ? color
-                : '#6b7280'; // gray-500
+                : '#6b7280';
 
     const dotColor = disabled
-        ? '#9ca3af' // gray-400
+        ? '#9ca3af'
         : selected
             ? color
             : 'transparent';
@@ -43,25 +43,22 @@ const RadioButton: React.FC<RadioButtonProps> = ({
                 className="flex-row items-center"
             >
                 <View
-                    style={{
-                        width: outer,
-                        height: outer,
-                        borderRadius: outer / 2,
-                        borderWidth: 2,
-                        borderColor,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: disabled ? '#f9fafb' : 'white', // gray-50
-                    }}
+                    style={[
+                        styles.radioOuter,
+                        getRadioOuterStyle(outer, borderColor, disabled),
+                    ]}
                 >
                     {selected && (
                         <View
-                            style={{
-                                width: inner,
-                                height: inner,
-                                borderRadius: inner / 2,
-                                backgroundColor: dotColor,
-                            }}
+                            style={[
+                                styles.radioInner,
+                                {
+                                    width: inner,
+                                    height: inner,
+                                    borderRadius: inner / 2,
+                                    backgroundColor: dotColor,
+                                },
+                            ]}
                         />
                     )}
                 </View>
@@ -84,4 +81,27 @@ const RadioButton: React.FC<RadioButtonProps> = ({
     );
 };
 
+const styles = StyleSheet.create({
+    radioOuter: {
+        borderWidth: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    radioInner: {
+        // `backgroundColor`, `width`, `height`, `borderRadius` → tetap dinamis
+    },
+});
+
 export default RadioButton;
+
+const getRadioOuterStyle = (
+    outer: number,
+    borderColor: string,
+    disabled: boolean
+) => ({
+    width: outer,
+    height: outer,
+    borderRadius: outer / 2,
+    borderColor,
+    backgroundColor: disabled ? '#f9fafb' : '#ffffff',
+});

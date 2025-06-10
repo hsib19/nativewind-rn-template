@@ -6,11 +6,12 @@ import { ThemeProvider } from './src/theme/ThemeProvider';
 import { store } from './src/store';
 import RootNavigator from './src/navigation/RootNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'; // ✅ Tambahkan ini
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { StyleSheet } from 'react-native';
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.container}>
       <BottomSheetModalProvider>
         <Provider store={store}>
           <ThemeProvider>
@@ -21,3 +22,9 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

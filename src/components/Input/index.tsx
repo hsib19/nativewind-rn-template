@@ -45,7 +45,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
     const IconComponent =
         iconType && iconName && IconPacks[iconType as keyof typeof IconPacks];
-    const currentSize = sizeStyles[size] || sizeStyles['md'];
+    const currentSize = sizeStyles[size] || sizeStyles.md;
     const currentIconSize = iconSize ?? currentSize.icon;
 
     const roundedStyle =
@@ -134,7 +134,7 @@ const Input: React.FC<InputProps> = ({
                         />
                     )}
                 </View>
-             
+
             </View>
             {error && (
                 <Text className="mt-1 text-sm text-red-500">{error}</Text>

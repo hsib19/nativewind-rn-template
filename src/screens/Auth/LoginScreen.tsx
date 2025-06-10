@@ -24,7 +24,7 @@ export default function LoginScreen() {
                 onChangeText={setPassword}
                 secureTextEntry
             />
-            <Button iconName='home' rounded="md" shadowRadius={6} shadow={true} iconPosition='right' iconType='Feather' title={loading ? 'Loading...' : 'Login'} onPress={handleLogin} />
+            <Button iconName="home" rounded="md" shadowRadius={6} shadow={true} iconPosition="right" iconType="Feather" title={loading ? 'Loading...' : 'Login'} onPress={handleLogin} />
             {error && <Text className="text-red-500">{error}</Text>}
         </View>
     );

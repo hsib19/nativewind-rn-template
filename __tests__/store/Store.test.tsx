@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { render } from '@testing-library/react-native'; // atau '@testing-library/react' kalau web
-import { store, useAppDispatch, useAppSelector } from '@store/index'; // sesuaikan path
+import { render } from '@testing-library/react-native';
+import { store, useAppDispatch, useAppSelector } from '../../src/store';
 
 const DispatchTester = ({ onDispatch }: { onDispatch: () => void }) => {
     const dispatch = useAppDispatch();
@@ -14,7 +14,7 @@ const DispatchTester = ({ onDispatch }: { onDispatch: () => void }) => {
 };
 
 const SelectorTester = ({ onSelect }: { onSelect: (value: any) => void }) => {
-    const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
 
     React.useEffect(() => {
         onSelect(isAuthenticated);
@@ -39,8 +39,8 @@ describe('Redux store and hooks', () => {
         };
 
         render(
-            <Provider store={ store } >
-                <DispatchTester onDispatch={ onDispatch } />
+            <Provider store={store}>
+                <DispatchTester onDispatch={onDispatch} />
             </Provider>
         );
 
@@ -55,11 +55,12 @@ describe('Redux store and hooks', () => {
         };
 
         render(
-            <Provider store={ store } >
-        <SelectorTester onSelect={ onSelect } />
-        </Provider>
+            <Provider store={store}>
+                <SelectorTester onSelect={onSelect} />
+            </Provider>
         );
 
         expect(typeof selectedValue).toBe('boolean');
+        expect(selectedValue).toBe(false);
     });
 });
