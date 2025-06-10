@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { login } from '@/store/authSlice';
 import Button from '@/components/Button';
+import Input from '@/components/Input';
 
 export default function LoginScreen() {
     const dispatch = useAppDispatch();
@@ -16,8 +17,8 @@ export default function LoginScreen() {
 
     return (
         <View className="p-5">
-            <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
-            <TextInput
+            <Input placeholder="Email" value={email} onChangeText={setEmail} />
+            <Input
                 placeholder="Password"
                 value={password}
                 onChangeText={setPassword}
