@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "clean:all": "rm -rf node_modules android/.gradle android/build .gradle ios/build ios/Pods ios/Podfile.lock && npm cache clean --force && npm install"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",

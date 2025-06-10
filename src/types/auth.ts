@@ -23,7 +23,7 @@ export interface LoginResponse {
 export interface AuthState {
     token: string | null;
     user: LoginResponse['user'] | null;
-    isAuthenticated: boolean; 
+    isAuthenticated: boolean;
     loading: boolean;
     error: string | null;
 }

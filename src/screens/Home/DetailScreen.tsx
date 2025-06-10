@@ -10,7 +10,7 @@ export default function DetailScreen() {
     const navigation = useNavigation<DetailScreenNavigationProp>();
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View className="flex-1 justify-center items-center">
             <Text>Detail Screen</Text>
             <Button title="Go Back" onPress={() => navigation.goBack()} />
         </View>

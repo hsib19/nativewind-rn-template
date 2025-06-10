@@ -112,7 +112,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Render empty screen with correct background color until ready to avoid flicker
     if (!isReady) {
-        return <View style={{ flex: 1, backgroundColor: theme === 'dark' ? '#000' : '#fff' }} />;
+        return <View className={`flex-1 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`} />;
     }
 
     return (

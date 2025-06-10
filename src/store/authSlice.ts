@@ -56,7 +56,9 @@ export const restoreAuth = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const data = await AsyncStorage.getItem('auth');
-            if (!data) return rejectWithValue('No saved auth');
+            if (!data) {
+                return rejectWithValue('No saved auth');
+            }
             return JSON.parse(data) as LoginResponse;
         } catch {
             return rejectWithValue('Failed to restore auth');
@@ -74,7 +76,7 @@ const authSlice = createSlice({
             state.user = null;
             state.isAuthenticated = false;
             state.error = null;
-        }
+        },
     },
     extraReducers: (builder) => {
         builder

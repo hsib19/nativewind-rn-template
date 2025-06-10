@@ -13,9 +13,10 @@ export default function ProfileScreen() {
     const logout = useLogout();
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View className="items-center justify-center flex-1">
             <Text>Profile Screen</Text>
             <Button title="Logout" onPress={logout} />
+            <Button title="Profile Setting" onPress={() => navigation.navigate('Detail') } />
         </View>
     );
 }

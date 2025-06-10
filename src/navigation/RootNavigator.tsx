@@ -12,14 +12,15 @@ export default function App() {
 
     useEffect(() => {
         dispatch(restoreAuth());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (loadingAuth) {
         return(
-            <View className='flex-1 items-center justify-center'>
+            <View className="flex-1 items-center justify-center">
                 <ActivityIndicator />
             </View>
-        ); 
+        );
     }
 
     return (

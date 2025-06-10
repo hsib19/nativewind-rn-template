@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { AuthStackParamList } from '@/types/navigation';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { login } from '@/store/authSlice';
 
-type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
-
-export default function LoginScreen(navigation: Props) {
+export default function LoginScreen() {
     const dispatch = useAppDispatch();
     const { loading, error } = useAppSelector((state) => state.auth);
     const [email, setEmail] = useState<string>('');
@@ -27,7 +23,7 @@ export default function LoginScreen(navigation: Props) {
                 secureTextEntry
             />
             <Button title={loading ? 'Loading...' : 'Login'} onPress={handleLogin} />
-            {error && <Text style={{ color: 'red' }}>{error}</Text>}
+            {error && <Text className="text-red-500">{error}</Text>}
         </View>
     );
 }

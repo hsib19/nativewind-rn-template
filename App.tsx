@@ -1,10 +1,10 @@
-import "./global.css";
+import './global.css';
 
 import { Provider } from 'react-redux';
-import { ThemeProvider } from "@/theme/ThemeProvider";
-import { store } from "@/store";
+import { ThemeProvider } from '@/theme/ThemeProvider';
+import { store } from '@/store';
 import RootNavigator from '@/navigation/RootNavigator';
- 
+
 export default function App() {
 
     return(
@@ -14,5 +14,5 @@ export default function App() {
         </ThemeProvider>
       </Provider>
     );
-    
+
 }
