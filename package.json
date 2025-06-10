@@ -15,8 +15,7 @@
     "start:storybook": "react-native start",
     "storybook:android": "cross-env STORYBOOK_ENABLED=true react-native run-android",
     "storybook:ios": "cross-env STORYBOOK_ENABLED=true react-native run-ios",
-    "storybook-clean": "rm -rf .rnstorybook/storybook-loader.js && npm run storybook-generate",
-    "storybook-generate": "sb-rn-get-stories"
+    "storybook-clean": "rm -rf .rnstorybook/storybook-loader.js && npm run storybook-generate"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",

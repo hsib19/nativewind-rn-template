@@ -1,97 +1,178 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# NativeWind RN Template
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+![npm](https://img.shields.io/npm/v/nativewind?color=cyan&label=NativeWind)
+![react-native](https://img.shields.io/badge/react--native-0.79.3-blue)
+![typescript](https://img.shields.io/badge/typescript-5.0.4-blue)
+![last-commit](https://img.shields.io/github/last-commit/hsib19/nativewind-rn-template)
+![repo-size](https://img.shields.io/github/repo-size/hsib19/nativewind-rn-template)
 
-## Step 1: Start Metro
+A clean and minimal React Native template with **NativeWind** (Tailwind CSS for React Native) pre-configured, designed to kickstart your React Native CLI projects with easy styling and modern best practices.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Features
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- React Native CLI starter template  
+- Preconfigured with NativeWind for Tailwind CSS styling  
+- Ready to use with TypeScript support  
+- Integrated **Sentry** for error tracking and monitoring  
+- Setup with **Detox** for end-to-end (E2E) testing  
+- Included **Storybook** for isolated UI component development  
+- Example screen with Tailwind styling  
+- Minimal dependencies and setup
 
-```sh
-# Using npm
-npm start
+## Getting Started
 
-# OR using Yarn
-yarn start
+### Prerequisites
+
+- Node.js (>=18 recommended)  
+- React Native CLI environment set up (Android Studio / Xcode, device or emulator)  
+- Yarn or npm package manager
+
+### Installation
+
+Clone this repo:
+
+```bash
+git clone https://github.com/hsib19/nativewind-rn-template.git
+cd nativewind-rn-template
 ```
 
-## Step 2: Build and run your app
+Install dependencies:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+yarn install
+# or
+npm install
 ```
 
-### iOS
+### Running the App
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+- For iOS (Mac only):
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
+```bash
 yarn ios
+# or
+npm run ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+- For Android:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+yarn android
+# or
+npm run android
+```
 
-## Step 3: Modify your app
+### Running Storybook
 
-Now that you have successfully run the app, let's make changes!
+Start the Metro bundler for Storybook:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```bash
+yarn start:storybook
+# or
+npm run start:storybook
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+Launch the app in Storybook mode:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- iOS (Mac only):
 
-## Congratulations! :tada:
+```bash
+yarn storybook:ios
+# or
+npm run storybook:ios
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+- Android:
 
-### Now what?
+```bash
+yarn storybook:android
+# or
+npm run storybook:android
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+To clean and regenerate Storybook loader:
 
-# Troubleshooting
+```bash
+yarn storybook-clean
+# or
+npm run storybook-clean
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Running Tests with Jest
 
-# Learn More
+Run all tests:
 
-To learn more about React Native, take a look at the following resources:
+```bash
+yarn test
+# or
+npm test
+```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Run tests with coverage report:
+
+```bash
+yarn test:coverage
+# or
+npm run test:coverage
+```
+
+Run tests in watch mode:
+
+```bash
+yarn test --watch
+# or
+npm test -- --watch
+```
+
+### Using Sentry
+
+Sentry is pre-configured for error tracking.  
+Replace the DSN in your Sentry config file or initialization code with your own DSN to start monitoring errors.
+
+### Running Detox Tests (E2E)
+
+Make sure your emulator or device is running.
+
+- Android:
+
+```bash
+detox test -c android.emu.debug
+```
+
+- iOS (Mac only):
+
+```bash
+detox test -c ios.sim.debug
+```
+
+See Detox docs for more details:  
+https://wix.github.io/Detox/docs/introduction/getting-started
+
+## Usage
+
+Start building your app inside the `src` folder. Use NativeWind’s Tailwind classes to style React Native components quickly and intuitively.
+
+Example:
+
+```tsx
+import { View, Text } from 'react-native';
+
+export default function HomeScreen() {
+  return (
+    <View className="flex-1 justify-center items-center bg-white">
+      <Text className="text-xl font-bold text-blue-600">Hello, NativeWind!</Text>
+    </View>
+  );
+}
+```
+
+## Learn More
+
+- [React Native Docs](https://reactnative.dev/docs/getting-started)  
+- [NativeWind Docs](https://www.nativewind.dev/)  
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)  
+- [Sentry React Native](https://docs.sentry.io/platforms/react-native/)  
+- [Detox E2E Testing](https://wix.github.io/Detox/docs/introduction/getting-started)  
+- [Storybook for React Native](https://storybook.js.org/docs/react-native/get-started/introduction)  
+- [Jest Testing](https://jestjs.io/docs/getting-started)
